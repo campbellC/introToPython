@@ -1,0 +1,48 @@
+
+\documentclass{article}
+
+\usepackage{amssymb}
+\usepackage{array}
+\usepackage{tabularx}
+
+\newcolumntype{S}{>{\centering\arraybackslash}m{1.5em}}
+
+\renewcommand{\tabularxcolumn}[1]{m{#1}} % redefine 'X' to use 'm'
+
+\begin{document}
+\makebox[\textwidth]{%
+\begin{tabularx}{1.2\textwidth}{|X|S|S|S|S|S|S|X|}
+  \hline
+  The course ... & $0$ & $1$ & $2$ & $3$ & $4$ & $5$ &\\
+  \hline
+  was too easy & $\square$ & $\square$ & $\square$ & $\square$ & $\square$ & $\square$ & too hard\\
+  \hline
+was too short  & $\square$ & $\square$ & $\square$ & $\square$ & $\square$ & $\square$ & was too long\\
+  \hline
+ didn't cover relevant material  & $\square$ & $\square$ & $\square$ & $\square$ & $\square$ & $\square$ & covered relevant material\\
+  \hline
+Will be not useful to me in research and/or employment& $\square$ & $\square$ & $\square$ & $\square$ & $\square$ & $\square$ &will be useful to me in research and/or employment\\
+\end{tabularx}%
+}
+Do you think a course like this should be available to all PhD students?
+\vspace{ 2cm}
+
+Do you think Python was a good choice of language or would you rather another one (please suggest)?
+\vspace{ 2cm}
+
+
+
+
+Please add any topics you think should have been covered or that you would like to be covered in a future course.
+\vspace{ 3cm}
+
+
+
+Any other thoughts or ideas?
+
+\vspace{ 2cm}
+
+
+
+
+\end{document}

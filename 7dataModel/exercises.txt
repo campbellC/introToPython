@@ -1,0 +1,164 @@
+This week I have taken some exercises from reddits /r/dailyprogrammer forum which has lots of good practice. I chose easy ones but 
+they might be too easy for you now. If so then go and find some intermediate ones (or hard!). The important concepts this week are 
+for you to understand what your code is doing on disk and so a very good idea for you to do whilst solving these problems is to run 
+your code on 
+
+http://pythontutor.com/
+
+to see what the memory is doing. Before you do this, try and predict what will happen and then see if you were right. If not, find out why! 
+Make sure you try using classes, functions, lists etc. so you can see all the different kinds of behaviour.
+
+
+
+ (Easy): Roll the Dies
+
+In many board games, you have to roll multiple multi-faces dies[1] .jpg) to generate random numbers as part of the game mechanics. A classic die used is the d20 (die of 20 faces) in the game Dungeons & Dragons. This notation, often called the Dice Notation[2] , is where you write NdM, where N is a positive integer representing the number of dies to roll, while M is a positive integer equal to or grater than two (2), representing the number of faces on the die. Thus, the string "2d20" simply means to roll the 20-faced die twice. On the other hand "20d2" means to roll a two-sided die 20 times.
+Your goal is to write a program that takes in one of these Dice Notation commands and correctly generates the appropriate random numbers. Note that it does not matter how you seed your random number generation[3] , but you should try to as good programming practice.
+Author: nint22
+Formal Inputs & Outputs
+
+Input Description
+
+You will be given a string of the for NdM, where N and M are describe above in the challenge description. Essentially N is the number of times to roll the die, while M is the number of faces of this die. N will range from 1 to 100, while M will range from 2 to 100, both inclusively. This string will be given through standard console input.
+Output Description
+
+You must simulate the die rolls N times, where if there is more than one roll you must space-delimit (not print each result on a separate line). Note that the range of the random numbers must be inclusive of 1 to M, meaning that a die with 6 faces could possibly choose face 1, 2, 3, 4, 5, or 6.
+Sample Inputs & Outputs
+
+Sample Input
+
+2d20
+4d6
+Sample Output
+
+19 7
+5 3 4 6
+
+(Easy): Disemvoweler
+
+Disemvoweling means removing the vowels from text. (For this challenge, the letters a, e, i, o, and u are considered vowels, and the letter y is not.) The idea is to make text difficult but not impossible to read, for when somebody posts something so idiotic you want people who are reading it to get extra frustrated.
+To make things even harder to read, we'll remove spaces too. For example, this string:
+two drums and a cymbal fall off a cliff
+can be disemvoweled to get:
+twdrmsndcymblfllffclff
+We also want to keep the vowels we removed around (in their original order), which in this case is:
+ouaaaaoai
+Formal Inputs & Outputs
+
+Input description
+
+A string consisting of a series of words to disemvowel. It will be all lowercase (letters a-z) and without punctuation. The only special character you need to handle is spaces.
+Output description
+
+Two strings, one of the disemvoweled text (spaces removed), and one of all the removed vowels.
+Sample Inputs & Outputs
+
+Sample Input 1
+
+all those who believe in psychokinesis raise my hand
+Sample Output 1
+
+llthswhblvnpsychknssrsmyhnd
+aoeoeieeioieiaiea
+
+Sample Input 2
+
+did you hear about the excellent farmer who was outstanding in his field
+
+Sample Output 2
+
+ddyhrbtthxcllntfrmrwhwststndngnhsfld
+ioueaaoueeeeaeoaouaiiiie 
+
+(Easy): Sum Them Digits
+
+As a crude form of hashing function, Lars wants to sum the digits of a number. Then he wants to sum the digits of the result, and repeat until he have only one digit left. He learnt that this is called the digital root[1] of a number, but the Wikipedia article is just confusing him.
+Can you help him implement this problem in your favourite programming language?
+It is possible to treat the number as a string and work with each character at a time. This is pretty slow on big numbers, though, so Lars wants you to at least try solving it with only integer calculations (the modulo operator[2] may prove to be useful!).
+Author: TinyLebowski
+Formal Inputs & Outputs
+
+Input Description
+
+A positive integer, possibly 0.
+Output Description
+
+An integer between 0 and 9, the digital root of the input number.
+Sample Inputs & Outputs
+
+Sample Input
+
+31337
+Sample Output
+
+8, because 3+1+3+3+7=17 and 1+7=8
+ 
+ (Easy): Sum-the-Digits, Part II
+
+Given a well-formed (non-empty, fully valid) string of digits, let the integer N be the sum of digits. Then, given this integer N, turn it into a string of digits. Repeat this process until you only have one digit left. Simple, clean, and easy: focus on writing this as cleanly as possible in your preferred programming language.
+Author: nint22. This challenge is particularly easy, so don't worry about looking for crazy corner-cases or weird exceptions. This challenge is as up-front as it gets :-) Good luck, have fun!
+Formal Inputs & Outputs
+
+Input Description
+
+On standard console input, you will be given a string of digits. This string will not be of zero-length and will be guaranteed well-formed (will always have digits, and nothing else, in the string).
+Output Description
+
+You must take the given string, sum the digits, and then convert this sum to a string and print it out onto standard console. Then, you must repeat this process again and again until you only have one digit left.
+Sample Inputs & Outputs
+
+Sample Input
+
+Note: Take from Wikipedia for the sake of keeping things as simple and clear as possible.
+12345
+Sample Output
+
+12345
+15
+6 
+
+(Easy): Tree Generation
+
+Your goal is to draw a tree given the base-width of the tree (the number of characters on the bottom-most row of the triangle section). This "tree" must be drawn through ASCII art-style graphics[1] on standard console output. It will consist of a 1x3 trunk on the bottom, and a triangle shape on the top. The tree must be centered, with the leaves growing from a base of N-characters, up to a top-layer of 1 character. Each layer reduces by 2 character, so the bottom might be 7, while shrinks to 5, 3, and 1 on top layers. See example output.
+
+
+Formal Inputs & Outputs
+
+Input Description
+
+You will be given one line of text on standard-console input: an integer and two characters, all space-delimited. The integer, N, will range inclusively from 3 to 21 and always be odd. The next character will be your trunk character. The next character will be your leaves character. Draw the trunk and leaves components with these characters, respectively.
+Output Description
+
+Given the three input arguments, draw a centered-tree. It should follow this pattern: (this is the smallest tree possible, with a base of 3)
+   *
+  ***
+  ###
+Here's a much larger tree, of base 7:
+   *
+  ***
+ *****
+*******
+  ###
+Sample Inputs & Outputs
+
+Sample Input 1
+
+3 # *
+Sample Output 1
+
+   *
+  ***
+  ###
+Sample Input 2
+
+13 = +
+Sample Output 2
+
+      +
+     +++
+    +++++
+   +++++++
+  +++++++++
+ +++++++++++
++++++++++++++
+     ===

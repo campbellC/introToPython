@@ -1,0 +1,113 @@
+\documentclass{beamer}
+\usetheme{Copenhagen}
+
+\title{Introduction to Python}
+\usepackage{listings}
+\subtitle{The Python Data Model}
+\date{10th November 2016}
+
+\begin{document}
+
+\lstset{language=Python}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+
+\begin{frame}[fragile]{The Function Call Stack}
+\begin{itemize}
+\item{You start with a `global scope`. }
+\item{This is a set of variables, class names etc. available to you at all points in the program.}
+\pause
+\item{When you call a function you `push` a new scope onto the `call stack`.}
+\pause
+\item{When a function returns, it is `popped` off the stack.}
+\pause
+\item{\bf{Demo Time!}}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{How does Python Store Data?}
+\begin{itemize}
+\item{Recall that everything in Python is an object}
+\item{Functions, numbers, strings, python code...}
+\pause
+\item{Every object has a unique ID number. In CPython (standard Python on Linux) this is the address in memory. (C Pointer if you know what that means) }
+\pause
+\begin{block}{}
+	\begin{lstlisting}
+	x = 2
+	y = 2
+	x == y # True
+	x is y # maybe true? don't depend on it!
+	\end{lstlisting}
+\end{block}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{How does Python Store Data?}
+\begin{itemize}
+\item{Every object has a reference count - how many things are pointing to me?}
+\pause
+\item{If you assign a name to an object the reference count goes up. If you remove that assignment it goes down.}
+\pause
+\item{If the reference count is zero, Python deletes the object for you and frees up the memory.}
+\item{This is called \textbf{Garbage Collection}.}
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}[fragile]{Mutable vs. Immutable Data Types}
+\begin{itemize}
+\item{Some objects cannot be changed in place. These are \textbf{Immutable Objects}.}
+\begin{block}{}
+	\begin{lstlisting}
+	x = 2
+	y = x 
+	x is y #True! guaranteed
+	x += 2
+	print(y) # prints 2
+	\end{lstlisting}
+	\end{block}
+\pause
+\item{Strings, ints and floats are immutable. This makes sense (I think).}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{Mutable vs. Immutable Data Types}
+\begin{itemize}
+\item{Other objects can be changed in place. These are \textbf{Mutable Objects}.}
+\begin{block}{}
+	\begin{lstlisting}
+	x = [1,2,3] 
+	y = x 
+	x is y #True! guaranteed
+	x.append(2) 
+	print(y) # [1,2,3,2]
+	\end{lstlisting}
+	\end{block}
+\pause
+\item{Lists and dictionaries are mutable types.}
+\pause
+\item{ Use round brackets instead of square brackets to create a tuple - an immutable list.}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Shameless theft}
+\begin{itemize}
+\item{ http://nedbatchelder.com/text/names1.html} 
+\item{I will now steal this guys talk}
+\item{This weeks exercises all stolen from reddit.com/r/dailyprogrammer}
+\item{Use this site for practice!}
+\end{itemize}
+\end{frame}
+
+
+\end{document}
+
+
+
+

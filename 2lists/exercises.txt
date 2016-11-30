@@ -1,0 +1,43 @@
+These exercises are in no particular order, some are hard, some are trivial.
+
+
+Simple list stuff:
+
+Takes two lists and tests if they have the same final element
+
+Takes a list and adds up all the elements
+
+Check if the list is a palindrome
+
+Returns the reverse of a list
+
+Takes two lists [a,b,c,…],[x,y,z,…] and returns the list of pairs [[a,x],[b,y],[c,z]…] - Once finished google "python zip"
+
+Takes a list and returns the difference of it’s biggest and smallest elements
+
+Dictionaries:
+
+Make a dictionary of items in a shop with prices (e.g. {“bananas”: 4})
+Print out a menu for your shop - i.e. all items with their prices. you will have to google how to loop through dictionaries!
+Now write a function that takes a list of strings and returns the cost of that order - maybe add some functionality to handle if you don’t have an item!
+
+
+
+
+Others:
+
+Uses the sieve of eratosthenes, slicing and dictionaries to build a mapping from integers up to 1000 to True or False for primality.
+
+
+Takes in a string of text and returns a count of how many time each word in it appears (use a dictionary!) google the string.split() function to see how to turn a string into a list quickly.
+
+Write a function that returns the nth fibonacci number.
+Now change it to use a dictionary to memoise as it goes. (see the example memoised prime function to for a hint of how to do this)
+
+Write a function that sorts a list of ints (don't worry about efficiency for now)
+
+Implement any of the sorting algorithms you can find on wikipedia to sort a list of ints - mergesort is a good one to start with. 
+
+
+
+

@@ -1,0 +1,22 @@
+This is an opportunity to spend time going back over previous exercises and
+making sure you understand them.  If they don't work why not try using the
+debugger to find out why not!
+
+
+If you want a challenge the following can be done using only concepts we have
+covered (plus maybe reading some documentation online!). Make sure that you're
+code reads well and is maintainable. If something is complicated then comment
+it or split it up into functions to make it readable.
+
+1) Make a function that tests if two words are anagrams of each other.
+
+2) Write a 2 player noughts and crosses game. 
+
+3) Use 2) and give it an AI to play against!
+
+4) Find the Project Euler website and try some of the challenges. Warning - some of these are difficult and its often hard to tell at first...
+
+5) Implement a graph data structure.  Don't worry about efficiency this is a learning exercise!
+
+6) Write a basic path finding algorithm using 5). Definitely don't worry about efficiency here...
+

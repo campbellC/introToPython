@@ -1,0 +1,187 @@
+\documentclass{beamer}
+\usetheme{Copenhagen}
+
+\title{Introduction to Python}
+\usepackage{listings}
+\subtitle{Objects 2: Inheritance and Hooks}
+\date{}
+\newcommand{\snippet}{\lstinline}
+\begin{document}
+\definecolor{keywords}{RGB}{255,0,90}
+\definecolor{comments}{RGB}{0,0,113}
+\definecolor{red}{RGB}{160,0,0}
+\definecolor{green}{RGB}{0,150,0}
+\lstset{language=Python, 
+        basicstyle=\ttfamily\small, 
+        keywordstyle=\color{keywords},
+        commentstyle=\color{comments},
+        stringstyle=\color{red},
+        showstringspaces=false,
+        identifierstyle=\color{green},
+        procnamekeys={def,class}}
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\section{Inheritance}
+
+\begin{frame}[fragile]{Why Objects?}
+ 	Object-oriented programming can be used for:
+ 	\begin{itemize}
+ 		\item Encapsulation
+ 		\item Abstraction
+ 		\item \textbf{Code reuse}
+ 	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Inheritance}
+	\begin{itemize}
+	\item { Inheritance is a mechanism by which one class \textbf{inherits} code from another class.
+	}
+	\pause
+	\item {Best seen by example. Lets write a program to model cars.
+  \begin{block}{}
+\begin{lstlisting}{frame=single}
+class Car():
+    def changeGear(self, gear):
+        self.gear = gear 
+	
+    def printMe(self):
+        print "I'm a car."	    
+\end{lstlisting}
+\end{block}
+	}
+	\end{itemize}
+\end{frame}
+\begin{frame}[fragile]{Inheritance}
+  \begin{block}{}
+\begin{lstlisting}{frame=single}
+class Car():
+    def changeGear(self, gear):
+        self.gear = gear 
+	
+    def printMe(self):
+        print "I'm a car."	    
+
+class Ford(Car):
+    def printMe(self):
+        print "I'm a Ford!"
+x = Ford()
+x.printMe() # prints "I'm a Ford!"
+x.changeGear(5)
+print x.gear #prints 5
+\end{lstlisting}
+\end{block}
+
+\end{frame}
+\begin{frame}[fragile]{How does inheritance work?}
+	\begin{itemize}
+	\item {Every class inherits from \snippet{object} implicitly.  }
+	\pause
+	\item {If \snippet{X} inherits from \snippet{Y} then we say \snippet{X} is a \textbf{subclass} of \snippet{Y}.}
+	\pause 
+	\item {When you call a method on an instance the interpreter checks if the class has that method. If not it looks up the inheritance chain until it finds it.}
+	\end{itemize}
+\end{frame}
+\begin{frame}[fragile]{Constructors of Subclasses}
+If you need to initialise data then you must tell your superclass to initialise itself as well.
+  \begin{block}{}
+\begin{lstlisting}{frame=single}
+class Dog():
+    def __init__(self, colour):
+        self.colour = colour 
+
+class BlackDog(Dog):
+    def __init__(self, name):
+        Dog.__init__(self, "Black")
+        self.name = name
+\end{lstlisting}
+\end{block}
+Make sure to initialise everything in the superclass before setting up the subclass.	
+\end{frame}
+\section{Hooks}
+\begin{frame}[fragile]{What is a hook?}
+	\begin{itemize}
+	\item { Consider the following code:
+  \begin{block}{}
+\begin{lstlisting}{frame=single}
+print 1+2 #  3 
+print "h" + "i" # hi
+print ["h"] + ["i"] # ["h","i"]
+\end{lstlisting}
+\end{block}
+	}
+	\pause
+	\item {All of these types (\snippet{int}, \snippet{str}, \snippet{list}) know how to respond 
+	to \snippet{print} and \snippet{+}.}
+	\pause
+	\item { Using \snippet{print} on our classes so far has resulted in fairly useless output.}
+	\end{itemize}
+\end{frame}
+\begin{frame}[fragile]{What is a hook?}
+	\begin{itemize}
+	\item { Recall the \snippet{Rational} class from last time:
+  \begin{block}{}
+\begin{lstlisting}{frame=single}
+class Rational():
+    def __init__(self, numerator, denominator):
+        self.numerator = numerator
+        self.denominator = denominator
+
+half = Rational(1,2)
+print half 
+\end{lstlisting}
+\end{block}
+	Prints "\_\_main\_\_.Rational instance at 0x10a183440"
+	}
+	\pause
+	\item {Because I haven't told \snippet{Rational} how to respond to print, it defaults to printing 
+	its location in memory.}
+	\pause
+	\item {Bonus question: how does it know how to do that?}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{What is a hook?}
+	\begin{itemize}
+	\item { Let's fix that behaviour:
+  \begin{block}{}
+\begin{lstlisting}{frame=single}
+class Rational():
+    def __init__(self, numerator, denominator):
+        self.numerator = numerator
+        self.denominator = denominator
+
+    def __repr__(self):
+        return str(self.numerator) + '/' + str(self.denominator)
+\end{lstlisting}
+\end{block}
+	}
+	\pause
+	\item { \snippet{__repr__} is a \textbf{hook} that the statement \snippet{print} calls on 
+	it's arguments.}
+	\pause
+	\item {This is very useful for keeping track of what your program is doing!}
+	\item {\snippet{__} is pronounced \textbf{dunder}- so dunder repr}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Important Hooks}
+	There are a ton of hooks that you can decide whether to implement for your class. Here are a few I find useful (see Python documentation for full list):
+	\begin{itemize}
+	\item {\snippet{__eq__(self, other)}: How to respond to comparison with \snippet{==}.}
+	\item {\snippet{__add__(self,other)}: How to respond to \snippet{+}}.
+	\item{\snippet{__getitem__(self,other)}: implement access to data using the \snippet{x[integer]} notation.}
+	\end{itemize}
+	Use wisely. If you don't think hard about this you can really confuse your users (or yourself)!
+\end{frame}
+
+\subsection{Demo}
+\begin{frame}[fragile]{Demo}
+	 \huge{\textbf{Demo Time!}}
+\end{frame}
+
+\end{document}
+
+
+

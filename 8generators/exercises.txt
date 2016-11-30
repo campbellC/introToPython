@@ -1,0 +1,21 @@
+Make a generator that: (note several of these are in itertools, but make your own first!)
+
+iterates through all the numbers
+
+gives the times table of a given number
+
+takes an iterable and yields that iterable again and again and again: [1,2,3] |--> 1 ,2 ,3 ,1, 2, 3,...
+
+yields the fibonacci sequence (infinite)
+
+takes any iterable and yields the first n objects in it.
+
+takes a number and iterates through the prime factors of it (up to you whether you do multiplicity!)
+
+takes any finite list of objects  and iterates through all permutations of them (intermediate - use recursive calls!)
+
+takes two lists and iterates through the Cartesian product of them 
+
+takes a list of iterables and iterates through them one by one. Maybe add an optional parameter to repeat using your repeating generator from above.
+
+Iterates through a string word by word, or line by line

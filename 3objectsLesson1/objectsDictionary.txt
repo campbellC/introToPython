@@ -1,0 +1,4 @@
+class - blueprint of a kind of object
+instance - an instantiation of a class (think a building built from the blueprints)
+field - a named piece of data stored by an instance
+method - a function that the class defines so that instances of it have functionality

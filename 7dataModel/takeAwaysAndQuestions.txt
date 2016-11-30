@@ -1,0 +1,14 @@
+Important things to take away:
+
+Assignment never copies data.
+
+Rebinding variables happens independently.
+
+Assignment happens at the start of for loops, function calls, function definitions and normal assignments.
+
+
+Test yourself with the following on the files test*.py
+Before running each test file try and predict the output. If you
+are wrong run it in pythontutor and find out why!
+
+

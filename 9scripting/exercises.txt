@@ -1,0 +1,60 @@
+The files used in these exercises were written for the *nix environment (OS X, Linux etc.). I do not know how Windows works and 
+Windows machines might not like e.g. files without extension names. If you run into problems ask me and we can figure out a solution.
+
+
+
+Problem set 1:
+
+Wikipedia page hits. Note: some of the wikipedia pages have very NSFW titles. Apologies but I don't want to sanitise a million entries...
+
+pageCounts and pageCounts2 are random data dumps from wikipedia. Details here:
+
+https://dumps.wikimedia.org/other/pagecounts-raw/ 
+
+Your first task is to find the most popular page in:
+	each of these files independently
+	between both files
+
+Now find the top ten most popular pages:
+	each of these files independently
+	between both files
+
+Now find the top ten most popular wikibooks pages over both the files. (see the link above for how to tell a link is a wikibook)
+Now the top ten most popular english pages.
+
+As you do this problem think about how to make your code reusable.
+
+
+
+Problem set 2:
+No need to do each and every one of the exercises. Choose ones you think you might like!
+
+In the playground directory you will find a datafile.dat with random integers.
+
+Make a program that stores the following in different output files with names of your choosing:
+	A copy of the datafile
+	A copy of the datafile but with line numbers in front of each line A
+	A copy of the datafile but in comma seperated form instead of space seperated form
+	Only those lines whose values start with an even number
+	Only those lines whose line numbers are even
+	Only those lines whose first value is prime
+	Only those lines that contain a prime
+	The row-wise sums of the datafiles
+	The columnwise sum of the datafile2
+
+
+
+You should also find datafile2.dat. My computer doesn't like files of over 100 lines in length. 
+Write a program to split up this file into one hundred files of length 100 lines. I also would like them in comma seperated form. The files should be named sensibly!
+Now I want all of the lines from these 100 files that start in an even number and contain a prime in it's own file.
+
+Now do all of the above but make the file on which you are acting a variable that the user decides with a command line argument.
+Make it so that the user can put as many arguments as they want and your program will act on all of those files
+
+Write a program that takes in as many comma seperated value (csv) files as the user wants and finds which has the biggest average.
+Now write a program where the first command line argument is the thing that seperates the data so that the user can decide, e.g. space seperated, semicolon separated etc. Maybe make it so that you can choose for each file
+Use the different datafiles to test this program
+
+
+
+Need ideas for more? Think of an annoying problem you have to do often and try and automate it! 

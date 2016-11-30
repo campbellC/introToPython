@@ -1,0 +1,265 @@
+\documentclass{beamer}
+\usetheme{Copenhagen}
+
+\title{Introduction to Python}
+\usepackage{listings}
+\subtitle{Scripting in Python}
+\date{25th November 2016}
+
+\begin{document}
+
+\lstset{language=Python}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+
+
+
+\section{File I/O}
+
+\begin{frame}[fragile]{Opening Files}
+\begin{block}{}
+\begin{lstlisting}{frame=single}
+f = open('foo.txt','r') # read
+f.close()
+\end{lstlisting}
+\end{block}
+\pause
+ \begin{block}{}
+\begin{lstlisting}{frame=single}
+f = open('foo.txt','w') # write
+f.close()
+\end{lstlisting}
+\end{block}
+\pause
+ \begin{block}{}
+\begin{lstlisting}{frame=single}
+f = open('foo.txt','a') # append
+f.close()
+\end{lstlisting}
+\end{block}
+\end{frame}
+\begin{frame}[fragile]{Opening Byte Files}
+If your file is not a simple text file you might have to treat it as a byte file. e.g. PDF, pickle files etc
+\begin{block}{}
+\begin{lstlisting}{frame=single}
+f = open('foo.txt','rb') # read
+f.close()
+\end{lstlisting}
+\end{block}
+ \begin{block}{}
+\begin{lstlisting}{frame=single}
+f = open('foo.txt','wb') # write
+f.close()
+\end{lstlisting}
+\end{block}
+ \begin{block}{}
+\begin{lstlisting}{frame=single}
+f = open('foo.txt','ab') # append
+f.close()
+\end{lstlisting}
+\end{block}
+\end{frame}
+
+
+\begin{frame}[fragile]{Better Opening Files}
+\begin{itemize}
+\item You should always close a file that you open.
+\item The OS \emph{should} take care of it if your program closes.
+\pause
+\item The best way to handle this is with \emph{context handlers}:
+  \begin{block}{}
+\begin{lstlisting}{frame=single}
+with open('foo.txt','r') as f:
+    # code
+\end{lstlisting}
+\end{block}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Reading Files}
+	\begin{itemize}
+	\item {The file handle has an internal state - position in the file.
+	}
+	\pause
+	\item {Several of the "read" functions move that state forwards}
+	\pause
+	\item {Use seek() to move around this state}
+	\pause
+	\item tell() returns the current line number
+\begin{block}{}
+\begin{lstlisting}{frame=single}
+with open('foo.txt','r') as f:
+    lines = f.readlines() # list of lines     
+    print f.readlines() # prints []
+    f.seek(0)
+    f.readlines() == lines # True
+\end{lstlisting}
+\end{block}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{Reading Files}
+	\begin{itemize}
+	\item {readlines() returns an array of the lines
+	}
+	\item {read() returns a string of the whole file }
+	\pause
+	\item {Both of these require you to store whole file in memory, bad for big files}
+	\pause
+	\item Iteration to the rescue!
+\begin{block}{}
+\begin{lstlisting}{frame=single}
+with open('foo.txt','r') as f:
+    for line in f:
+        #analyse line 
+    # f is now at end of file, seek to restart
+\end{lstlisting}
+\end{block}
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}[fragile]{Writing Files}
+  \begin{block}{}
+\begin{lstlisting}{frame=single}
+with open('foo.txt','w') as f:
+    f.write("Hello there\n") # note the \n
+\end{lstlisting}
+\end{block}
+\pause
+\begin{block}{}
+\begin{lstlisting}{frame=single}
+    x = "foo" + str(100) + "bar \n"
+    f.write(x)
+\end{lstlisting}
+\end{block}
+\end{frame}
+
+
+\subsection{Demo}
+\begin{frame}[fragile]{Demo}
+	 \huge{\textbf{Demo Time!}}
+\end{frame}
+\section{Pickling}
+\begin{frame}[fragile]{Serialisation}
+\begin{itemize}
+\item Sometimes you need to save your data (or send it).
+\pause
+\item We have seen how to write to a file - great for numbers, text etc.
+\item What about more complicated objects?
+\pause
+\item Python's pickle library lets you store your objects to disk
+\end{itemize}
+\end{frame}
+\begin{frame}[fragile]{Pickle example}
+\begin{block}{}
+\begin{lstlisting}{frame=single}
+x = some_huge_data_structure()
+# Lets store it on disk
+pickle.dump(x, open('mySaveFile.pb','wb')) 
+# ... some other script
+y = pickle.load(open('mySaveFile.pb', 'rb))
+\end{lstlisting}
+\end{block}
+\end{frame}
+
+\section{Important Libraries}
+\subsection{PDF handling}
+\begin{frame}[fragile]{Not enough time}
+	\begin{itemize}
+	\item {PyPDF2 is a comprehensive PDF python library
+	}
+	\item {Concatenate PDF files, create new ones etc.}
+	\pause
+	\item Demo time - splitter.py
+	\end{itemize}
+\end{frame}
+\subsection{The OS library}
+\begin{frame}[fragile]{os}
+	\begin{itemize}
+	\item {The os library lets you interact with the file system.  }
+	\item e.g. view the files in the current directory, sort by last time modified
+	\pause
+	\item As always, the docs are the place to go - good detailed info on all the useful functions.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{os - important methods}
+\begin{block}{}
+\begin{lstlisting}{frame=single}
+os.chdir(path) #change current directory
+os.listdir(path) # list files in path
+os.rename(src, dest) # rename file
+os.execv(path, args) # execute program at path
+os.tmpfile() # a temporary file
+\end{lstlisting}
+\end{block}
+\end{frame}
+
+\subsection{Regular Expressions}
+\begin{frame}[fragile]{re}
+	\begin{itemize}
+	\item {Regular expressions (Regex) are one of the most powerful single tools in programming.
+	}
+	\pause
+	\item Spend a few hours learning it, its worth it!
+	\item Plenty of resources online, especially http://www.regular-expressions.info/tutorial.html
+	\item Python library is called re
+	\end{itemize}
+\end{frame}
+
+
+
+\subsection{Command Line Arguments}
+\begin{frame}[fragile]{Command Line Arguments}
+	\begin{itemize}
+	\item {When you launch a program the OS hands it the arguments it was launched with.
+	} 
+	\pause
+	\item{ e.g.
+\begin{block}{}
+\begin{lstlisting}{frame=single}
+python test.py
+\end{lstlisting}
+\end{block}}
+\pause
+\item {Access these using the sys module in Python
+\begin{block}{}
+\begin{lstlisting}{frame=single}
+import sys
+sys.argv # list of arguments 
+sys.argv[0] # name of current program
+\end{lstlisting}
+\end{block}}
+\end{itemize}
+\end{frame}
+\begin{frame}[fragile]{The argparse Library}
+	\begin{itemize}
+	\item {For robust argument handling use the argparse library. } 
+	\pause
+	\item{ e.g.
+\begin{block}{}
+\begin{lstlisting}{frame=single}
+python test.py -f 20 --input-file demoFile.dat
+\end{lstlisting}
+\end{block}}
+	\pause
+	\item {Arguments have long and short versions, can be optional, be entered with different orders etc.} 
+\end{itemize}
+\end{frame}
+
+
+\subsection{Demo}
+\begin{frame}[fragile]{Demo}
+	 \huge{\textbf{Demo Time - todo generator}}
+\end{frame}
+
+
+
+
+\end{document}

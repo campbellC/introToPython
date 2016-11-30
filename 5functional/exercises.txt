@@ -1,0 +1,30 @@
+Use your prime testing function to make a list of False and True of length 1000 such that x[n] = True if n is prime and False otherwise.
+
+Implement map, filter, reduce 
+
+Using anonymous functions write a function to compute the product of a list.
+Now one that computes the product of the squares of a list.
+
+
+
+
+Write a function to test if a character is a vowel or not.
+Look up pythons string.join function and test it out a bit
+Try using map on a string and see what it gives you!
+Write a function that takes a string and returns a string with all of the vowels removed
+
+
+-------
+Take in a space seperated list of integers using raw_input(). Use map and .split() to convert this to a list of integers.
+Now square all the numbers in the list.
+Now get rid of all the odd numbers in the list
+now sum up all the numbers in the list
+
+Try and do all of this in four or five neat readable lines of code.
+--------
+
+Go back through the other exercises we’ve done. Try and make them more efficient, cleaner etc. using functional patterns.
+
+Try turning iterative methods you have used into recursive methods. Think about readability - which is better for you?
+
+

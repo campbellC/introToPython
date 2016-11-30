@@ -1,0 +1,192 @@
+\documentclass{beamer}
+\usetheme{Copenhagen}
+
+\title{Introduction to Python}
+\usepackage{listings}
+\subtitle{Iterables, Iterators and Generators}
+\date{13 November 2015}
+
+\begin{document}
+\definecolor{keywords}{RGB}{255,0,90}
+\definecolor{comments}{RGB}{0,0,113}
+\definecolor{red}{RGB}{160,0,0}
+\definecolor{green}{RGB}{0,150,0}
+\lstset{language=Python, 
+        basicstyle=\ttfamily\small, 
+        keywordstyle=\color{keywords},
+        commentstyle=\color{comments},
+        stringstyle=\color{red},
+        showstringspaces=false,
+        identifierstyle=\color{green},
+        procnamekeys={def,class}}
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\section{Iterables}
+\begin{frame}[fragile]{Examples 1}
+  \begin{itemize}
+	\item {We have already seen that loops in Python are pretty flexible:
+	\pause
+  \begin{block}{}
+\begin{lstlisting}{frame=single}
+for i in [1,2,3]:
+    print i # prints elements
+for	i in "123":
+    print i # prints characterwise
+\end{lstlisting}
+\end{block}
+	}
+  \end{itemize}
+\end{frame}
+\begin{frame}[fragile]{Examples 2}
+  \begin{itemize}
+	\item {We have already seen that loops in Python are pretty flexible (excuse lack of indentation):
+  \begin{block}{}
+\begin{lstlisting}{frame=single}
+for i in xrange(4):
+    print i #prints the range without storing
+for i in enumerate([1,2,3]):
+    print i # gives me indices as well as elements
+\end{lstlisting}
+\end{block}
+	}
+	\pause
+	\item{ Hopefully you see this and think how do I do that in my code!}
+  \end{itemize}
+\end{frame}
+\begin{frame}[fragile]{Definition}
+  \begin{itemize}
+	\item { An \textbf{iterable} is any object that responds to the function iter(obj) 
+	}
+	\pause
+	\item{ Python likes to hide this! 
+  \begin{block}{}
+  \begin{lstlisting}{frame=single}
+	for i in x: 
+	    # Do loop stuff
+  \end{lstlisting}
+\end{block}
+}
+\item Call iter(x) and assign to some name that is never used in the code.
+\pause
+\item iter(x) returns an object that can do one thing and one thing alone - respond to \_\_next\_\_()
+\pause
+\item Assign i to the response to \_\_next\_\_() each time round until it throws StopIteration exception (sort of an error) and then move on.
+\end{itemize}
+\end{frame}
+\begin{frame}[fragile]{Definition}
+  \begin{itemize}
+  \begin{block}{}
+  \begin{lstlisting}{frame=single}
+	for i in x: 
+	    # Do loop stuff
+  \end{lstlisting}
+\end{block}
+	\item{ This is equivalent to:
+  \begin{block}{}
+  \begin{lstlisting}{frame=single}
+  randomName = iter(x)
+  while(True):
+      try:
+          i = randomName.__next__()
+          # Do loop stuff
+      except StopIteration:
+           break
+  \end{lstlisting}
+\end{block}
+}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Uses for Iterables}
+  \begin{itemize}
+	\item{ Iterables can be used all over the place! 
+  \begin{block}{}
+  \begin{lstlisting}{frame=single}
+  new_list = list(iterable)
+  total = sum(iterable)
+  smallest = min(iterable)
+  largest = max(iterable)
+  combined = ''.join(iterable)
+  result = [f(x) for x in iterable]
+ \end{lstlisting}
+\end{block}
+}
+
+\end{itemize}
+\end{frame}
+\section{Generators}
+\begin{frame}[fragile]{Make your own iterables}
+  \begin{itemize}
+  \item{ To make an object and iterable you only need to define the \_\_iter\_\_() hook.}
+  \item{\textbf{Generators} are a great way to create your own iterables that are extremely flexible}
+  \pause
+  \item{You define generators in a similar way to function but using the keyword \textbf{yield}
+  \begin{block}{}
+\begin{lstlisting}{frame=single}
+def myXRange(n):
+    i = 0
+    while( i < n):
+        yield i
+        i += 1
+\end{lstlisting}
+\end{block}
+}
+\pause
+\item This responds to the \emph{next} call by running until it hits yield and then stopping and waiting.
+\pause
+\item Demo Time!
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Make your own iterables 2}
+  \begin{itemize}
+\item No reason to make our iterable only finite!
+\item{ Lets have all of the positive even numbers
+\begin{block}{}
+\begin{lstlisting}{frame=single}
+def evens():
+    i = 2
+    while True:
+        yield i
+        i += 2
+\end{lstlisting}
+\end{block}
+}
+\pause
+\item Be careful when using these! Don't try to make a list out of this one...
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Make your own iterables 3}
+\begin{itemize}
+\item{ Perhaps most importantly, we can make iterables that depend on other iterables.
+\pause
+\begin{block}{}
+\begin{lstlisting}{frame=single}
+def myEnumerate(iterable):
+    index = 0
+    for i in iterable:
+        yield (index,i)
+        index += 1
+\end{lstlisting}
+\end{block}
+}
+\item Demo Time!
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Fin}
+\begin{itemize}
+\item Suggested watching: Loop Like A Native, Ned Batchelder
+\item Suggested Library: itertools (This probably has what you need!)
+\end{itemize}
+\end{frame}
+
+
+
+\end{document}
+
+
+

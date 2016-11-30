@@ -1,0 +1,305 @@
+\documentclass{beamer}
+%\usetheme{AnnArbor}
+%\usetheme{Antibes}
+%\usetheme{Bergen}
+%\usetheme{Berkeley}
+%\usetheme{Berlin}
+%\usetheme{Boadilla}
+%\usetheme{boxes}
+%\usetheme{CambridgeUS}
+\usetheme{Copenhagen}
+%\usetheme{Darmstadt}
+%\usetheme{default}
+%\usetheme{Frankfurt}
+%\usetheme{Goettingen}
+%\usetheme{Hannover}
+%\usetheme{Ilmenau}
+%\usetheme{JuanLesPins}
+%\usetheme{Luebeck}
+%\usetheme{Madrid}
+%\usetheme{Malmoe}
+%\usetheme{Marburg}
+%\usetheme{Montpellier}
+%\usetheme{PaloAlto}
+%\usetheme{Pittsburgh}
+%\usetheme{Rochester}
+%\usetheme{Singapore}
+%\usetheme{Szeged}
+%\usetheme{Warsaw}
+
+\title{Introduction to Python}
+\usepackage{listings}
+\subtitle{Lists and Dictionaries}
+\date{29th September 2016}
+% - Give the names in the same order as the appear in the paper.
+% - Use the \inst{?} command only if the authors have different
+%   affiliation.
+
+% Let's get started
+\begin{document}
+
+\lstset{language=Python}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+% Section and subsections will appear in the presentation overview
+% and table of contents.
+\section{Lists}
+
+\subsection{Basic List Syntax}
+\begin{frame}[fragile]{Creating a list}
+  \begin{itemize}
+  \item {
+  Lists are denoted by square brackets. Here is an empty list.
+  \begin{block}{}
+  \begin{lstlisting}{frame=single}
+  x = []
+  \end{lstlisting}
+\end{block}
+ } 
+ \pause
+ \item {
+We can also initialise the list with some elements	  
+ \begin{block}{}
+ \begin{lstlisting}{frame=single}
+  x = [1,"hi",72]
+  \end{lstlisting}
+\end{block}
+\pause
+
+  To access these we use the square bracket accessors:
+  \begin{block}{}
+  \begin{lstlisting}{frame=single}
+   print x[0] # prints 1
+   print x[1] # prints "hi"
+  \end{lstlisting}
+\end{block}
+  }
+  \end{itemize}
+  
+
+\end{frame}
+
+\begin{frame}[fragile]{Mutating lists}
+  \begin{itemize}
+  \item {
+  Square brackets also let us change entries in a list.
+  \begin{block}{}
+  \begin{lstlisting}{frame=single}
+  x = [1,"hi",72]
+  x[0] = "foo"
+  print x # prints ["foo", "hi",72]
+  \end{lstlisting}
+\end{block}
+  }
+  \pause
+  \item {
+  If we want to add something to a list we can use "append" or list concatenation with "+"
+  \begin{block}{}
+\begin{lstlisting}{frame=single}
+  x.append(0.3) # x = x + [0.3] also works 
+  print x[-1] # prints 0.3
+  \end{lstlisting}
+\end{block}
+  }
+  \end{itemize}
+\end{frame}
+\begin{frame}[fragile]{Iterating through lists}
+  \begin{itemize}
+  \item {
+  You have already seen looping through lists!
+  \begin{block}{}
+  \begin{lstlisting}{frame=single}
+  for i in range(1,10): #range returns a list
+	      print i
+  \end{lstlisting}
+\end{block}
+  }
+  \pause
+  \item {
+  The same syntax works for our own lists.
+  \begin{block}{}
+\begin{lstlisting}{frame=single}
+  x = [1, "hi", 3]
+  for i in x:
+		    print i
+  \end{lstlisting}
+\end{block}
+  }
+  \end{itemize}
+\end{frame}
+\begin{frame}[fragile]{Iterating through lists}
+  You can also loop by index - only do it if you need the index.
+  \begin{block}{}
+  \begin{lstlisting}{frame=single}
+  x = [1,2,3,4]
+  for i in range(len(x)): #range returns a list
+	      print i, x[i]
+  \end{lstlisting}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Strings as lists}
+  \begin{itemize}
+  \item {
+  When it comes to square brackets accessing you can treat strings like lists.
+  \begin{block}{}
+  \begin{lstlisting}{frame=single}
+    x = "hello there"
+    print x[1] #prints e
+    for char in x: #iterates by character
+            print char 
+  \end{lstlisting}
+\end{block}
+  }
+  \pause
+  \item {
+  But do not try to change individual characters in a string.
+  \begin{block}{}
+\begin{lstlisting}{frame=single}
+  x[1] = 'i' #Error
+  \end{lstlisting}
+\end{block}
+  }
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+	Example Time!
+\end{frame}
+
+\subsection{Pythonic Syntax - Slicing}
+\begin{frame}[fragile]{Slicing}
+  \begin{itemize}
+  \item {
+  In built into Python are slices - ways of taking sublists of lists and treating them as lists!
+  
+  Remember, closed left hand - open right hand intervals are the norm.
+  \begin{block}{}
+  \begin{lstlisting}{frame=single}
+  x = [1,"hi",72,0.3]
+  print x[1:3] # prints ["hi", 72]
+  \end{lstlisting}
+\end{block}
+  \pause
+  \begin{block}{}
+  \begin{lstlisting}{frame=single}
+  print x[:2] # prints [1, "hi"]  = x[0:2]
+  \end{lstlisting}
+\end{block}
+  \pause
+  \begin{block}{}
+  \begin{lstlisting}{frame=single}
+  print x[2:] #prints [72, 0.3] = x[2:4]
+  \end{lstlisting}
+\end{block}
+  \pause
+  \begin{lstlisting}{frame=single}
+  print x[:] # Any guesses?
+  \end{lstlisting}
+  }
+  \end{itemize}
+  
+
+\end{frame}
+
+\begin{frame}[fragile]{Slicing with steps}
+  \begin{itemize}
+  \item {
+  Using a second colon, we can specify the step size to move through a list.
+  \begin{block}{}
+  \begin{lstlisting}{frame=single}
+  x = [1,"hi",72,0.3]
+  print x[:3:2] # prints [1, 72]
+  \end{lstlisting}
+\end{block}
+  \pause
+  \begin{block}{}
+  \begin{lstlisting}{frame=single}
+  print x[:2:3] # prints [1] 
+  \end{lstlisting}
+\end{block}
+  \pause
+  \begin{block}{}
+  \begin{lstlisting}{frame=single}
+  print x[::-1] #prints [0.3,72, "hi", 1] 
+  \end{lstlisting}
+\end{block}
+  }
+  \end{itemize}
+  
+
+\end{frame}
+\begin{frame}
+	Example Time!
+\end{frame}
+
+\section{Dictionaries}
+\subsection{Using Dictionaries}
+\begin{frame}[fragile]{Creating a dictionary}
+  \begin{itemize}
+\item{
+Dictionaries are a way of storing a mapping from some data to other data. 
+}
+  \item {
+  Dictionaries are denoted by squiggly brackets. 
+  \begin{block}{}
+  \begin{lstlisting}{frame=single}
+  x ={} 
+  \end{lstlisting}
+\end{block}
+ } 
+ \pause
+ \item {
+We can also initialise the dictionary with some elements	  
+ \begin{block}{}
+ \begin{lstlisting}{frame=single}
+  x = {1 : "one", 2: "two", 3 : "three"  }
+  \end{lstlisting}
+\end{block}
+\pause
+
+  To access these we use the square bracket accessors:
+  \begin{block}{}
+  \begin{lstlisting}{frame=single}
+   print x[1] # prints "one" 
+   print x[3] # prints "three" 
+  \end{lstlisting}
+\end{block}
+  }
+  \end{itemize}
+  
+
+\end{frame}
+\begin{frame}[fragile]{Example dictionary}
+\begin{itemize}
+ \item {But we don't need to use integers as our index set.
+ \begin{block}{}
+ \begin{lstlisting}{frame=single}
+  x = {"four" : 4, "five": 5, "six" : 6  }
+  print x["four"] # prints 4
+  \end{lstlisting}
+\end{block}
+}
+\pause
+\item {We can also add new mappings to our dictionary
+ \begin{block}{}
+ \begin{lstlisting}{frame=single}
+  x["seven"] = 7
+  x["six"] = 11
+  \end{lstlisting}
+\end{block}
+}
+ \end{itemize}
+  
+
+\end{frame}
+\begin{frame}
+	Example Time!
+\end{frame}
+
+\end{document}
+
+

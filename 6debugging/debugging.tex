@@ -1,0 +1,112 @@
+\documentclass{beamer}
+\usetheme{Copenhagen}
+
+\title{Introduction to Python}
+\usepackage{listings}
+\subtitle{Debugging Python Programs}
+\date{4th November 2016}
+\usepackage{graphicx}
+\begin{document}
+
+\lstset{language=Python}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\section{Introduction}
+
+\subsection{Introduction}
+\begin{frame}[fragile]{What Is Debugging?}
+  \begin{itemize}
+  \item A bug is a problem with a program - either it doesn't run or it doesn't do what you want it to do.
+  \pause
+  \item{ Named for Admiral Grace Hopper who ``debugged" a moth in a Mark II in the 1940s. 
+  \begin{figure}
+  \includegraphics[width=0.8\textwidth,natwidth=110,natheight=142]{moth.jpg}
+  \end{figure}}
+  \end{itemize}
+\end{frame}
+\begin{frame}[fragile]{What Is Debugging?}
+  \begin{itemize}
+  \item A bug is a problem with a program - either it doesn't run or it doesn't do what you want it to do.
+  \item{ Named for Admiral Grace Hopper who ``debugged" a moth in a Mark II in the 1940s. }
+  \item{ Many different types of bugs - memory, flow control, using variables out of scope etc.}
+  \pause
+  \item{ An \textbf{error} is behaviour in a program we don't want.}
+  \pause
+  \item { The aim of debugging is to \textbf{diagnose} the bug that causes the error. }
+  \end{itemize}
+\end{frame}
+
+\section{Debugging In The Wild}
+\begin{frame}[fragile]{The Devil's Guide To Debugging }
+Stolen from Steve McConnell's Code Complete
+\begin{enumerate}
+\item{Scatter output statements everywhere}
+\pause
+\item{Debug the program into existence}
+\pause
+\item{Never back up earlier versions}
+\pause
+\item{Don't bother understanding what the program should do}
+\pause
+\item{Use the most obvious fix (fix the symptom!)}
+\pause
+\end{enumerate}
+\end{frame}
+
+
+\begin{frame}[fragile]{Better Debugging}
+	\begin{itemize}
+	\item Use the scientific method. 
+	\pause
+	\item Take your time - debugging can take more time than coding!
+	\pause
+	\item Set up test cases that you can work out by hand - or at least estimate.
+	\end{itemize}
+\end{frame}
+\begin{frame}[fragile]{pdb}
+	\begin{itemize}
+	\item { pdb is a Python library that lets you step through your program and access variables.
+	\begin{block}{}
+  \begin{lstlisting}{frame=single}
+  	import pdb
+  	pdb.set_trace() #start debugging
+  \end{lstlisting}
+  \end{block}}
+  \pause
+  \item{ Some commands: 
+  \begin{enumerate}
+\item h(elp) - print list of commands (USE THIS!)
+\item b(reak) [linenum]- set breakpoint here or at linenum
+\item cl(ear) [linenum] - delete breakpoint here or at linenum
+\item s(tep) - step into function called in this line 
+\item c(ontinue) - execute until breakpoint
+\item p [exp] - print expression e.g. a variable
+  \end{enumerate}
+  }
+	\end{itemize}
+\end{frame}
+\subsection{Demo}
+\begin{frame}[fragile]{Demo}
+\begin{itemize}
+\item{Classic problem: Strip HTML tags from a string. 
+\begin{block}{}
+\begin{lstlisting}
+	<b>foo</b>	---> foo
+\end{lstlisting}
+\end{block}}
+\item Solution: Have a boolean TAG variable that checks if you are inside a tag or not. 
+\end{itemize}
+
+\pause	 
+	 \huge{\textbf{Demo Time!}}
+	 
+\end{frame}
+
+\end{document}
+
+
+
+

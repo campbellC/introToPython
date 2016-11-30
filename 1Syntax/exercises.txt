@@ -1,0 +1,26 @@
+Write a function or program that:
+
+mathsy ones:
+tests an int for primality using a loop and a division checker (the module math may help "import math")
+prints the nth prime number
+calculates the nth fibonacci number (recursive function?!)
+use a for loop to calculate the nth factorial.
+prints a table of centigrade to fahrenheit conversions e.g. for 100 different degree values
+
+FOR A RANDOM INTEGER: import random
+random.randint(a,b)
+FOR A range between two numbers
+range(a,b)
+
+string ones:
+use raw_input() to ask a user for their name and print to the screen
+prints each	 characters in a string on its own newline
+reverses a string
+checks if a string is a palindrome
+
+
+write a game where the program starts by choosing a random number
+then the user guesses and the program tells you if it's bigger or smaller
+Make sure the program handles bad input by the user - what if he inputs a letter by accident? or a number 
+outside the range?
+

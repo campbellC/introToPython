@@ -1,0 +1,220 @@
+\documentclass{beamer}
+%\usetheme{AnnArbor}
+%\usetheme{Antibes}
+%\usetheme{Bergen}
+%\usetheme{Berkeley}
+%\usetheme{Berlin}
+%\usetheme{Boadilla}
+%\usetheme{boxes}
+%\usetheme{CambridgeUS}
+\usetheme{Copenhagen}
+%\usetheme{Darmstadt}
+%\usetheme{default}
+%\usetheme{Frankfurt}
+%\usetheme{Goettingen}
+%\usetheme{Hannover}
+%\usetheme{Ilmenau}
+%\usetheme{JuanLesPins}
+%\usetheme{Luebeck}
+%\usetheme{Madrid}
+%\usetheme{Malmoe}
+%\usetheme{Marburg}
+%\usetheme{Montpellier}
+%\usetheme{PaloAlto}
+%\usetheme{Pittsburgh}
+%\usetheme{Rochester}
+%\usetheme{Singapore}
+%\usetheme{Szeged}
+%\usetheme{Warsaw}
+
+\title{Introduction to Python}
+\usepackage{listings}
+\subtitle{Functional Programming in Python}
+\date{\today}
+
+\begin{document}
+
+\lstset{language=Python}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\section{Introduction}
+
+\subsection{Introduction}
+\begin{frame}[fragile]{Lambda Calculus}
+  \begin{itemize}
+  \item {
+  \textbf{Idea:} Create a syntax to describe computation and study it formally as an abstract process.
+}
+  
+  \pause
+  \item {
+  First formulated by Alonzo Church just as Turing was inventing Turing machines.
+ } 
+ \pause
+ \item {
+Formally equivalent to Turing machines (proved by Turing). Led to the Church-Turing Thesis.
+  }
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Lambda Calculus in the Real World}
+
+\begin{itemize}
+\item{ \textbf{1958:} Lisp invented - a realisation of the Lambda Calculus. Nowadays: Common Lisp, Scheme, Clojure}
+\pause
+\item{\textbf{1970s:} ML invented at University of Edinburgh as a language to prove theorems with. Nowadays: OCaml, Standard ML.
+}
+\pause
+\item{\textbf{1987:} Haskell language invented, taught at Edinburgh to first years}
+\pause
+\item{\textbf{Present day:} Erlang, Python, C++ (ish), Swift and many more!}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{Concepts}
+	\begin{itemize}
+	\item { \textbf{Functions are First-Class Citizens:} Functions are just examples of data - they can be parameters in functions and return values to functions
+	}
+	\pause
+	\item{ \textbf{Pure functions:} Functions have no side effects. In particular every function is idempotent.
+	}
+\pause
+\item{\textbf{Recursion:} Because of the ``no mutation" philosophy, recursion is always preferred over iteration.
+}
+\pause
+\item{\textbf{Python is \emph{not} a pure-functional language. It's up to you what you use and ignore from the above
+}}
+\end{itemize}
+\end{frame}
+
+
+
+\section{Functional Programming In Action}
+\subsection{Helper Functions and Closures}
+\begin{frame}[fragile]{Helper Functions}
+	\begin{itemize}
+	\item { You can define functions inside functions. These will be inaccessible to the outside world.
+  \begin{block}{}
+  \begin{lstlisting}{frame=single}
+  def f(n):
+  	def g(m):
+	return m*m #latex won't let me indent  :(
+  	return g(n)
+  \end{lstlisting}
+\end{block}
+	}
+\item{ This is useful for de-cluttering your code and hiding functionality you don't want to be public.} 
+	\end{itemize}
+\end{frame}
+\begin{frame}[fragile]{Closures}
+	\begin{itemize}
+	\item { Helper functions are more powerful than at first they seem. Remember functions can be return values as well!
+	}
+	\pause
+	\item { When you return a function Python will \emph{capture} local variables needed to use later.
+  \begin{block}{}
+  \begin{lstlisting}{frame=single}
+  def powerFactory(n):
+  	def g(x):
+		return x ** n
+  	return g
+  \end{lstlisting}
+\end{block}
+}
+\pause
+\item{
+\large{\textbf{ Demo Time!}}
+}
+\end{itemize}
+\end{frame}
+\subsection{Anonymous Functions}
+\begin{frame}[fragile]{Lambdas}
+	\begin{itemize}
+	\item { Sometimes it can be annoying to come up with names for functions you will only use once.
+	} 
+	\pause
+	\item{Use Lambdas to get around this 
+  \begin{block}{}
+  \begin{lstlisting}{frame=single}
+  def powerFactory(n):
+  	return (lambda x: x ** n) 
+  \end{lstlisting}
+\end{block}
+}
+	\end{itemize}
+\end{frame}
+
+\subsection{Demo}
+\begin{frame}[fragile]{Demo}
+	 \huge{\textbf{Demo Time!}}
+\end{frame}
+
+
+
+\section{Map, Reduce and Filter}
+\begin{frame}[fragile]{Introduction}
+	\begin{itemize}
+	\item {Map, Reduce and Filter are three common functions from functional programming.
+	} 
+	\item{Each function acts on a list. Since these are functional they do not mutate the list!
+}
+\pause
+\item{The names have since become famous because of the 'MapReduce' framework invented by Google for Big Data calculations
+}
+	\end{itemize}
+\end{frame}
+\begin{frame}[fragile]{Map}
+	\begin{itemize}
+	\item {Map takes a function of one variable and a list and acts componentwise on the list.
+	} 
+	\pause
+	\item{For example:
+  \begin{block}{}
+  \begin{lstlisting}{frame=single}
+  x = [1,2,3]
+  print map(lambda z: z ** 2, x) 
+  # prints [1, 4, 9]
+  \end{lstlisting}
+\end{block}
+}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Reduce}
+	\begin{itemize}
+	\item {Reduce takes a function of two variables, a list and an initial value and 'folds' down the list.
+	} 
+	\pause
+	\item{For example:
+  \begin{block}{}
+  \begin{lstlisting}{frame=single}
+  x = [1,2,3]
+  print reduce(lambda y,z: y + z, x, 0) 
+  # prints 6
+  \end{lstlisting}
+\end{block}
+}
+	\end{itemize}
+\end{frame}
+\begin{frame}[fragile]{Filter}
+	\begin{itemize}
+	\item {Filter takes a function of one variable that returns True or False, a list and returns the list with only 
+	those elements that the function returns True on.
+	} 
+	\pause
+	\item{For example:
+  \begin{block}{}
+  \begin{lstlisting}{frame=single}
+  x = [1,2,3]
+  print reduce(lambda z: z \% 2, x) 
+  # prints [1,3]
+  \end{lstlisting}
+\end{block}
+}
+	\end{itemize}
+\end{frame}
+\end{document}

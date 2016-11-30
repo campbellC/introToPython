@@ -1,0 +1,20 @@
+Finish the rational class so that you can add, divide, multiply and subtract 
+rationals together. Add reduce functionality to get to lowest order terms.
+
+
+Write a class for a student. Students have names, student ID numbers and a list of
+exam scores. Make a new class called Cohort that has a field which is list of
+students and can calculate the average score of students in the cohort. Make sure a
+user can add new students to the cohort.
+
+------------------
+2D geometry
+------------------
+Write a circle class that can tell the user the radius, area and circumference of 
+itself.
+
+Now write a class called Point that has x coordinates and y coordinates. Add a centre
+field to your circle class.
+
+Now add a method so that circles can decide if they intersect with each other or with points.
+
