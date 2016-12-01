@@ -1,0 +1,160 @@
+\documentclass{beamer}
+\usetheme{Copenhagen}
+
+\title{Introduction to Python}
+\usepackage{listings}
+\subtitle{Scientific Computing with Python}
+\date{2nd December 2016}
+
+\begin{document}
+
+\lstset{language=Python}
+
+\newcommand{\snippet}{\lstinline}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+
+
+\section{Options}
+
+
+\begin{frame}[fragile]{Choices choices}
+\begin{itemize}
+\item Python has {\em a lot} of options for scientific computing
+\item Today is a small selection.
+\pause
+\item Today: numpy, matplotlib, (no sympy - sorry)
+\pause
+\item Missed out: Pandas, SciPy, PyGSL, ScientificPython, GmPy\ldots
+\item Please \bf{read the docs!}
+\end{itemize}
+\end{frame}
+
+\section{numpy}
+
+\begin{frame}[fragile]{Introduction to numpy}
+\begin{itemize}
+\item What is it?
+\begin{block}{}
+Numpy is an extension to Python adding support for large, multi-dimensional arrays and matrices, along with 
+a large library of high-level mathematical functions to operate on these arrays.
+\end{block}
+\pause
+\item More importantly - numpy is {\bf fast}.
+\item numpy is written in C and so is as fast as e.g. matlab.
+\pause
+\item Designed for ease of use with matlab - similar functions and can accept .mat files.
+\end{itemize}
+\end{frame}
+
+\subsection{numpy Classes and Functions}
+\begin{frame}[fragile]{ndarray}
+\begin{itemize}
+\item The basic building block is the \snippet{ndarray} type.
+\pause
+\item Multidimensional array. Can use it just like a vector, matrix or higher dimensional analogues.
+\pause
+\item Don't use the \snippet{matrix} class as it will give you odd bugs!
+\pause
+\item Arrays have a \snippet{shape} field that returns a vector of dimensions.
+\begin{block}{}
+\begin{lstlisting}{frame=single}
+import numpy as np
+x = np.random.rand(3) # x is 1d array 
+print x.shape # 3
+\end{lstlisting}
+\end{block}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{ndarray}
+\begin{itemize}
+\item Many similar functions to matlab.
+\begin{block}{}
+\begin{lstlisting}{frame=single}
+import numpy as np
+x = np.random.rand(3) # shape is 3
+y = np.eye((3,3)) # identity matrix
+z = np.zeros((4,4,4)) # note two sets of brackets
+\end{lstlisting}
+\end{block}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{ndarray}
+\begin{itemize}
+\item All Python arithmetic operators are {\em elementwise}.
+\item i.e. \snippet{*},\snippet{+},\snippet{**} etc.
+\pause
+\item Use \snippet{numpy.dot} for matrix-type multiplication.
+\pause
+\item If shapes don't match well then numpy tries to broadcast - read the docs!
+\pause
+\item You can also change the shape with \snippet{.reshape}.
+\pause
+\item Demo!
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}[fragile]{ndarray}
+\begin{itemize}
+\item Remember that numpy is still just a Python library.
+\pause
+\item Everything you know still applies 
+\pause
+\item e.g. slicing - slightly nicer syntax for numpy
+\begin{block}{}
+\begin{lstlisting}{frame=single}
+import numpy as np
+x = np.arange(6).reshape(4,4)
+y = x[3,:] # y is 4th row of x
+\end{lstlisting}
+\end{block}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{Statistics Functionality}
+\begin{itemize}
+\item numpy is smart - if you find yourself writing a for loop always try and rewrite in terms numpy functions.
+\pause
+\item Numpy is designed so that everything that works in one-dimension should work in any dimension.
+\item A lot of basic stats is built in: mean, standard deviation etc.
+\pause
+\item Example: linear regression
+\end{itemize}
+\end{frame}
+
+\section{Matplotlib}
+\begin{frame}[fragile]{What is matplotlib}
+\begin{itemize}
+\item What is it?
+\begin{block}{}
+matplotlib is a python 2D plotting library which produces publication quality figures in a variety of hardcopy formats and interactive environments across platforms.
+\end{block}
+\pause
+\item Makes things very simple!
+\pause
+\item Line plots, scatter plots, histograms, contour plots, 3d plots etc.
+\pause
+\item Integrates well with numpy
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Basic idea}
+\begin{itemize}
+\item There is always a 'current figure' and 'current plot'. 
+\item You build up the plot as you go before using \snippet{.show()} or \snippet{.savefig("filename")}.
+\pause
+\item Can have subplots, labelled axes etc.
+\pause
+\item Best seen through example!
+\end{itemize}
+\end{frame}
+
+\end{document}
