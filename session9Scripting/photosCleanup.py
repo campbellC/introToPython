@@ -1,7 +1,7 @@
 ###### This script just deletes old files in a directory
 import os
 import glob
-photosPath = '/Users/chrisCampbell/SpecialPhotos'
+photosPath = '~/Photos'
 numberOfPhotosToKeep = 60
 
 
