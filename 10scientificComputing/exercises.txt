@@ -1,0 +1,12 @@
+It's hard for me to pitch exercises at the right level here. On the one hand you may have projects 
+you are interested in doing anyway - in which case go do them! On the other hand maybe your unsure of
+how to proceed with practising numpy, matplotlib etc. I have links below to some good-seeming sets of 
+exercises I have found online. I won't have mentioned all of the functionality required to solve them but
+I can't stress enough how well written the documentation of these libraries is - it does a better job than I 
+ever could of explaining how to use it!
+
+
+http://math.illinois.edu/~shahkar2/cbmg/numpy-exercises.html
+
+
+https://github.com/rougier/numpy-100/blob/master/100%20Numpy%20exercises%20no%20solution.md
