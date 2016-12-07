@@ -22,7 +22,7 @@ particular `print` looks for `__str__()` first.
 `__repr__()` should be used to give a printable description of how the object
 is made. Standard library types have the property that the return of
 `__repr__()` should be runnable Python code that would recreate the same object
-- i.e.  `eval(repr(x) == x)` should be true. This is a guiding principle and
+- i.e.  `eval(repr(x)) == x` should be true. This is a guiding principle and
   its as always up to you how you treat it.
 
 
